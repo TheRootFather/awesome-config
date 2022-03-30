@@ -365,11 +365,17 @@ globalkeys = gears.table.join(
     end,
               {description = "File manager", group = "apps"}),
 
-    -- File Manager
+    -- Screenshot
     awful.key({ altkey },            "s",      function ()
     awful.util.spawn("flameshot gui")
     end,
               {description = "screenshot", group = "apps"}),
+
+    -- Color Picker
+    awful.key({ altkey },            "c",     function ()
+    awful.util.spawn("cpicker")
+    end,
+              {description = "cpicker", group = "apps"}),
 
 
     -- Restart system
@@ -526,7 +532,8 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+                     --placement = awful.placement.centered,
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen+awful.placement.centered,
      }
     },
 
@@ -601,7 +608,7 @@ beautiful.useless_gap = 5
 
 -- AUTOSTART
 --awful.spawn.with_shell("xrandr --output DisplayPort-0 --primary --mode 2560x1440 -r 144 --pos 1920x0 --rotate normal --output DisplayPort-1 --off --output DisplayPort-2 --off --output HDMI-A-0 --mode 1920x1080 --pos 0x360 --rotate normal -r 59")
-awful.spawn.with_shell("picom")
+awful.spawn.with_shell("picom --experimental-backend")
 awful.spawn.with_shell("nitrogen --restore")
 --awful.spawn.with_shell("volumeicon")
 
